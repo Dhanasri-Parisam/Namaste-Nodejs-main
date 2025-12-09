@@ -1,0 +1,160 @@
+Here is a clean, simple, beginner-friendly README.md that covers everything from your notes:
+
+Sync Code
+
+Async Code
+
+Blocking Sync Code
+
+setTimeout(cbfn, 0)
+
+Non-Blocking I/O
+
+Main Thread
+
+Asynchronous I/O
+
+libuv (GitHub)
+
+What is Sync Code?
+
+Synchronous (Sync) Code runs line by line, and Node.js waits for each line to finish before moving to the next one.
+
+ No background work
+ No callbacks
+ Blocking execution
+
+Think of it like standing in a queue:
+You wait for one person to finish before you can move forward.
+
+ Simple Sync Code Example
+console.log("A");
+console.log("B");
+console.log("C");
+
+✔ Output:
+A
+B
+C
+
+📌 2. Asynchronous (Async) Code
+
+Async code does not wait. Node.js continues running the next line.
+
+Example:
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Async Done");
+}, 1000);
+
+console.log("End");
+
+Output:
+Start
+End
+Async Done
+
+📌 3. Blocking Synchronous Code
+
+A heavy synchronous function blocks the main thread and stops everything else.
+
+Example:
+function block() {
+  const start = Date.now();
+  while (Date.now() - start < 3000) {}
+}
+
+console.log("Start");
+block();            // Blocks 3 seconds
+console.log("End");
+
+📌 4. setTimeout(cb, 0)
+
+Even with 0 ms delay, it runs after the current sync code finishes.
+
+Example:
+console.log("Start");
+
+setTimeout(() => {
+  console.log("Callback");
+}, 0);
+
+console.log("End");
+
+Output:
+Start
+End
+Callback
+
+📌 5. Non-Blocking I/O
+
+Node.js handles I/O (file, network, DB) in the background using libuv.
+
+Example:
+const fs = require("fs");
+
+console.log("Start");
+
+fs.readFile("file.txt", "utf8", (err, data) => {
+  console.log("File Read Complete");
+});
+
+console.log("End");
+
+Output:
+Start
+End
+File Read Complete
+
+📌 6. Main Thread (Event Loop)
+
+Node.js runs JavaScript on one main thread.
+
+If you run blocking code → the whole app becomes slow.
+
+Async code keeps the main thread free.
+
+Think of the main thread as a single waiter:
+
+If the waiter gets stuck with one customer, others must wait.
+
+📌 7. Asynchronous I/O
+
+Node.js does not read files or make network calls itself.
+
+Instead:
+
+The request goes to libuv (C++ library)
+
+libuv performs the I/O in background threads
+
+When done → callback goes to Event Loop → JS executes your callback
+
+This is why Node.js is non-blocking and fast for I/O-heavy work.
+
+📌 8. libuv (GitHub)
+
+libuv is the C library that powers Node.js async behavior.
+
+Manages thread-pool
+
+Handles file I/O
+
+Handles network I/O
+
+Powers timers, DNS, async tasks
+
+Works closely with the Event Loop
+
+🔗 GitHub: https://github.com/libuv/libuv
+
+🎉 Summary
+Concept	Meaning
+Sync Code	Executes line by line
+Async Code	Does not wait; callback runs later
+Blocking Code	Freezes main thread
+Non-Blocking I/O	libuv handles work in background
+Main Thread	Runs JS; must stay free
+setTimeout(0)	Still async; waits for current code to finish
+libuv	Provides Node's async engine

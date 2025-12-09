@@ -22,5 +22,33 @@
 - **Execution:** The optimized code continues to run efficiently until the program finishes or until changes in the code require adjustments.
 
 This step-by-step process ensures that JavaScript code is executed as quickly and efficiently as possible.
+
+## 7. byte code example
+```javascript
+function add(a, b) {
+  return a + b;
+}
+console.log(add(5, 10));
+```
+<!-- how byte code looks like -->
+```
+; Function add
+0x1a0:  LdaSmi 5
+0x1a4:  LdaSmi 10
+0x1a8:  Add
+0x1ac:  Return
+; Call to add function
+0x1b0:  Call add
+0x1b4:  Print
+```
+
+## 8. V8 Architecture Overview
+1. **Parser:** Converts JavaScript code into an Abstract Syntax Tree (AST).
+2. **Ignition:** The interpreter that executes bytecode generated from the AST.
+3. **TurboFan:** The optimizing compiler that generates machine code for frequently executed functions.
+4. **Garbage Collector:** Manages memory by reclaiming unused objects.
+5. **Runtime:** Provides built-in functions and APIs for JavaScript execution.
+6. **Memory Manager:** Handles memory allocation and deallocation for JavaScript objects.
+7. **Execution Context Stack:** Manages the execution contexts for function calls.
 """
 ![V8 Engine](./v8_arc.png)
