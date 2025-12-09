@@ -22,3 +22,18 @@ process.nextTick(() => console.log("1st Process.nexttick"))
 
 console.log("last line of program")
 
+// how call back queue looks like?
+// timers queue:  [1st timer]
+// poll queue: [fs.readFile callback]
+// check queue: [1st setImmediate]
+
+//output
+// last line of program
+// 1st Process.nexttick
+// promise
+// file data
+// 2nd Process.nexttick
+// 1st timer
+// 2nd timer
+// 1st setImmediate
+// 2nd setImmediate

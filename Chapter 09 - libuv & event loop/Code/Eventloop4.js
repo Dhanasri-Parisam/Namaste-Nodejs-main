@@ -14,3 +14,12 @@ process.nextTick(() => {
 })
 
 console.log("last line of program");
+
+// how output looks like?
+// last line of program
+// process.nexttick
+// inner nexttick
+// Promise
+// settimeout
+// setimmediate
+// file data
