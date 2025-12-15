@@ -2,7 +2,7 @@ const { MongoClient } = require("mongodb");
 const { ObjectId } = require("mongodb");
 
 //connection URL
-const url = "mongodb+srv://Application:Dhanasri88888@cluster0.prdv0tv.mongodb.net/"
+const url = process.env.MONGO_URI;
 const client = new MongoClient(url);
 
 const dbname = "HelloWorld"

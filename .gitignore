@@ -73,6 +73,9 @@ web_modules/
 .yarn-integrity
 
 # dotenv environment variable files
+# .env files are ignored because they often contain sensitive information
+# in db.js chapter13 - creating a database & mongodb inside the Code folder we are using .env file to store MONGO_URI which is sensitive information
+# for that reason we are ignoring all .env files
 .env
 .env.development.local
 .env.test.local
